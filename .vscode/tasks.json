@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "startDev",
+			"problemMatcher": [],
+			"label": "npm: startDev",
+			"detail": "nodemon --exec ts-node app.ts",
+			"group": {
+                "kind": "build",
+                "isDefault": true
+            }
+		}
+	]
+}
