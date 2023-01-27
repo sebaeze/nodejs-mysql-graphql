@@ -1,18 +1,19 @@
 /*  */
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-
+//
 dotenv.config();
-
+//
 const app: Express = express();
 const port = process.env.PORT||3000;
-
+//
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 //
-import { buildSchema } from "graphql" ;
 import { graphqlHTTP } from "express-graphql" ;
+/*
+import { buildSchema } from "graphql" ;
 //
 const users = [
     { id: 1, name: "John Doe", email: "johndoe@gmail.com" },
@@ -81,16 +82,20 @@ const root = {
     createUser,
     updateUser,
 };
+*/
 //
+import { resolvers, schema }   from "./src/schema/customer" ;
+//
+console.log("...resolvers: ",resolvers) ;
 app.use(
     "/graphql",
     graphqlHTTP({
         schema: schema,
-        rootValue: root,
+        rootValue: {...resolvers.Query},
         graphiql: true,
     })
 ) ;
-//
+/*
 import { mysqlModel } from "./src/db" ;
 //
 console.log("...process.env.MYSQL_DB_NAME: ",process.env.MYSQL_DB_NAME,";") ;
@@ -107,6 +112,7 @@ dbModels.customers.sync()
     .catch((errMC)=>{
         console.log("***ERROR: ",errMC) ;
     }) ;
+*/
 //
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
