@@ -6,39 +6,35 @@ import { mysqlModel } from "../../db" ;
 let dbModels = mysqlModel() ;
 const ARRAY_FIELDS = ['customerNumber', 'customerName', 'contactLastName', 'contactFirstName', 'phone', 'addressLine1', 'addressLine2', 'city', 'state', 'postalCode', 'country', 'salesRepEmployeeNumber', 'creditLimit'] ;
 //
-export const resolvers = {
-    //
-    Query: {
-        getCustomers: () => {
-            //
-            console.log("..estoy en getcusomter ???") ;
-            /*
-            return [{
-                customerNumber: 1,
-                customerName: "seba",
-                contactLastName: "andreole",
-                contactFirstName: "nose"
-            }]  ;
-            */
+const fetchCustomerData = (customerNumber:number) => {
+    return new Promise((respOk,respRech)=>{
+        try {
             //
             dbModels.customers.sync()
                 .then(()=>{
-                    console.log("...termine de conectar") ;
-                    return dbModels.customers.findAll({attributes: ARRAY_FIELDS ,where: {customerNumber: [112,114]}}) ;
+                    console.log("fetchCustomerData::...termine de conectar") ;
+                    return dbModels.customers.findAll({attributes: ARRAY_FIELDS ,where: {customerNumber: customerNumber}}) ;
                 })
-                .then((respQry: [any])=>{
-                    // console.log("...respQry: ",respQry) ;
-                    for ( let posR=0; posR<respQry.length; posR++ ){
-                        const { customers } = respQry[posR] ;
-                        console.log("elem: ",customers.dataValues ) ;
-                    } ;
-//                    respQry.customers
-                    return respQry ;
-                })
+                .then(respOk)
                 .catch((errMC)=>{
-                    console.log("***errMC: ",errMC) ;
-                    return [{customerName:"error"}]
+                    console.log("fetchCustomerData::***errMC: ",errMC) ;
+                    respRech([{customerName:"error"}]) ;
                 }) ;
+            //
+        } catch(errFCD){
+            console.log("fetchCustomerData::***ERROR: ",errFCD," ***") ;
+            respRech(errFCD) ;
+        } ;
+    }) ;
+} ;
+//
+export const resolvers = {
+    //
+    Query: {
+        getCustomers: async (props:{customerNumber:number}) => {
+            //
+            console.log("...props: ",props,";");
+            return await fetchCustomerData(props.customerNumber) ;
             //
         }
     }

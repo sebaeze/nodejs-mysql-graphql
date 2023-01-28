@@ -23,7 +23,7 @@ export const schema = buildSchema(`
         creditLimit:           Float!
     }
     type Query {
-        getCustomers: [Customer]
+        getCustomers(customerNumber:   Int): [Customer]
     }
 `) ;
 //
