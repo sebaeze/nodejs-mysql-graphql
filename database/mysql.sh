@@ -1,8 +1,11 @@
 #! /bin/bash
 ##
 ##
-MYSQL_PASSWORD=qaz11qaz
-MYSQL_USER=qaz11qaz
+MYSQL_USER=''
+MYSQL_PASSWORD=''
+##
+read -p  'User: ' MYSQL_USER
+read -p 'Password: ' MYSQL_PASSWORD
 ##
 echo Removing container $(podman stop mysql_db)
 sleep 5s
