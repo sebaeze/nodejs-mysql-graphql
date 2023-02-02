@@ -8,7 +8,7 @@ import { ModelProducts }      from "./modelProducts" ;
 declare var process : {
     env: {
         MYSQL_DB_NAME:  string ,
-        MYSQL_USER:     string ,
+        MYSQL_CONNECTION_USER:     string ,
         MYSQL_PASSWORD: string ,
         MYSQL_DB_URL:   string ,
         MYSQL_DB_PORT:  number
@@ -18,10 +18,9 @@ declare var process : {
 export const mysqlModel = () => {
     try {
         //
-        console.log("...mo::envMYSQL_DB_NAME: ",process.env.MYSQL_DB_NAME,";") ;
         const sequelize = new Sequelize(
             process.env.MYSQL_DB_NAME ,
-            process.env.MYSQL_USER ,
+            process.env.MYSQL_CONNECTION_USER ,
             process.env.MYSQL_PASSWORD ,
             {
                 host:    process.env.MYSQL_DB_URL ,

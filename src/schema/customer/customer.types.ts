@@ -1,29 +1,31 @@
 /*
 *
 */
-import { buildSchema } from "graphql" ;
+import {
+    GraphQLInt,
+    GraphQLFloat ,
+    GraphQLList,
+    GraphQLObjectType,
+    GraphQLSchema,
+    GraphQLString,
+  } from 'graphql' ;
 //
-export const schema = buildSchema(`
-    input CustomerInput {
-        customerNumber: Int!
-    }
-    type Customer {
-        customerNumber:   Int!
-        customerName:     String!
-        contactLastName:  String!
-        contactFirstName: String!
-        phone:            String!
-        addressLine1:     String!
-        addressLine2:     String!
-        city:             String
-        state:            String!
-        postalCode:       String!
-        country:          String!
-        salesRepEmployeeNumber: Int!
-        creditLimit:           Float!
-    }
-    type Query {
-        getCustomers(customerNumber:   Int): [Customer]
-    }
-`) ;
+export const typeCustomer = new GraphQLObjectType({
+    name: "Customer" ,
+    fields: () => ({
+        customerNumber:    { type: GraphQLInt } ,
+        customerName:      { type: GraphQLString },
+        contactLastName:   { type: GraphQLString },
+        contactFirstName:  { type: GraphQLString },
+        phone:             { type: GraphQLString },
+        addressLine1:      { type: GraphQLString },
+        addressLine2:      { type: GraphQLString },
+        city:              { type: GraphQLString },
+        state:             { type: GraphQLString },
+        postalCode:        { type: GraphQLString },
+        country:           { type: GraphQLString },
+        salesRepEmployeeNumber: { type: GraphQLInt },
+        creditLimit:            { type: GraphQLFloat }
+    })
+}) ;
 //
