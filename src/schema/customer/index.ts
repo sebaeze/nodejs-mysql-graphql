@@ -14,7 +14,8 @@ export const schema = new GraphQLSchema({
               type:       new GraphQLList(typeCustomer) ,
               args:       { customerNumber: {type: new GraphQLNonNull(GraphQLInt)} } ,
               resolve(root,args){ 
-                    let newArg={customerNumber:args.customerNumber}; 
+                    let newArg={customerNumber:args.customerNumber} ;
+                    //console.log("...newArg: ",newArg,"\nargs: ",args,";") ;
                     return resolvers.Query.getCustomer(newArg);
                 }
             },

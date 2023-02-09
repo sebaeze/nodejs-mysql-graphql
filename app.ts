@@ -4,14 +4,16 @@ import express, { Express, Request, Response } from 'express' ;
 import { graphqlHTTP }                         from "express-graphql" ;
 // import { resolvers, schema }                   from "./src/schema/customer" ;
 import { schema as schemaCustomer }            from "./src/schema/customer" ;
+import cors                               from "cors" ;
 //
 const app: Express = express();
-const port = process.env.PORT||3000;
+const port = process.env.PORT||4000;
 //
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 //
+app.use( cors() );
 app.use(
     "/graphql",
     graphqlHTTP({
