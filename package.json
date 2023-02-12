@@ -4,8 +4,8 @@
   "description": "intergration nodejs-lambda-graphql",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node app.ts",
-    "startDev": "nodemon --exec ts-node app.ts",
+    "start": "set DEBUG=nodejs-mysql-graphql:*&& ts-node app.ts",
+    "startDev": "set DEBUG=nodejs-mysql-graphql:*&& nodemon --exec ts-node app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

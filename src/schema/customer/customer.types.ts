@@ -8,6 +8,7 @@ import {
     GraphQLObjectType,
     GraphQLSchema,
     GraphQLString,
+    GraphQLInputObjectType,
   } from 'graphql' ;
 //
 export const typeCustomer = new GraphQLObjectType({
@@ -27,5 +28,16 @@ export const typeCustomer = new GraphQLObjectType({
         salesRepEmployeeNumber: { type: GraphQLInt },
         creditLimit:            { type: GraphQLFloat }
     })
+}) ;
+//
+export const inputUpdateCustomer = new GraphQLInputObjectType({
+    name: "inputUpdateCustomer" ,
+    fields: {
+        id:                { type: GraphQLInt } ,
+        customerName:      { type: GraphQLString },
+        contactLastName:   { type: GraphQLString },
+        contactFirstName:  { type: GraphQLString },
+        creditLimit:       { type: GraphQLFloat }
+    }
 }) ;
 //
