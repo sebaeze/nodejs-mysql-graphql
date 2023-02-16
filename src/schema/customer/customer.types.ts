@@ -33,7 +33,7 @@ export const typeCustomer = new GraphQLObjectType({
 export const inputUpdateCustomer = new GraphQLInputObjectType({
     name: "inputUpdateCustomer" ,
     fields: {
-        id:                { type: GraphQLInt } ,
+        customerNumber:    { type: GraphQLInt } ,
         customerName:      { type: GraphQLString },
         contactLastName:   { type: GraphQLString },
         contactFirstName:  { type: GraphQLString },

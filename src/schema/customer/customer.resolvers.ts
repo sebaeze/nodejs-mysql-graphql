@@ -46,12 +46,13 @@ const fetchCustomerData = (customerNumber?:number) => {
 export const updateCustomer = async ( argCustomer2update: ICustomer2Update ) => {
     try {
         //
-        log("...updateCustomer::argCustomer2update: ",argCustomer2update,"**") ;
-        /*
-        for ( let key in argCustomer2update ){
-            log("...key: ",key," value: ",argCustomer2update[key],";") ;
-        };
-        */
+        log("...updateCustomer::number: ",argCustomer2update.customerNumber," argCustomer2update: ",argCustomer2update,"**") ;
+        //
+        let {customerNumber:_,...fields2update} = {...argCustomer2update} ;
+        //
+        const recordUpdated = await dbModels.customers.update( fields2update, {silent: true, where:{customerNumber: argCustomer2update.customerNumber}} ) ;
+        log("...recordUpdated: ",recordUpdated,";") ;
+        //
         return [argCustomer2update] ;
         //
     } catch(errFCD){

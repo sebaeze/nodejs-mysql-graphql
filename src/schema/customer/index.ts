@@ -42,7 +42,6 @@ const mutationCustomers = () => {
                 input: { type: inputUpdateCustomer }
               } ,
               resolve(root?:any,args?:any){ 
-                    console.log("...voy a hacer update gil") ;
                     return updateCustomer(args.input) ;
                 }
             }
