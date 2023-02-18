@@ -1,0 +1,11 @@
+{
+    "productCode": "STRING",
+    "productName": "STRING",
+    "productLine": "STRING",
+    "productScale": "STRING",
+    "productVendor": "STRING",
+    "productDescription": "TEXT",
+    "quantityInStock": "INTEGER",
+    "buyPrice": "DECIMAL",
+    "MSRP": "DECIMAL"
+  }

@@ -18,7 +18,6 @@ const queryCustomers = () => {
               args:       { customerNumber: {type: new GraphQLNonNull(GraphQLInt)} } ,
               resolve(root?:any,args?:any){ 
                     let newArg={customerNumber:args.customerNumber} ;
-                    //console.log("...newArg: ",newArg,"\nargs: ",args,";") ;
                     return resolvers.Query.getCustomer(newArg);
                 }
             },
