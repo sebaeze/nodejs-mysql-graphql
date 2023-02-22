@@ -1,7 +1,7 @@
 /*
 *
 */
-import { mysqlModel } from "../../db" ;
+import { mysqlModel } from "../../db" ; 
 //
 let dbModels = mysqlModel() ;
 const ARRAY_FIELDS = ['customerNumber', 'customerName', 'contactLastName', 'contactFirstName', 'phone', 'addressLine1', 'addressLine2', 'city', 'state', 'postalCode', 'country', 'salesRepEmployeeNumber', 'creditLimit'] ;

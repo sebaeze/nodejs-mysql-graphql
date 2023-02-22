@@ -3,7 +3,7 @@
 */
 //
 import { Sequelize, DataTypes }    from 'sequelize';
-import  _productConfig             from "../config/productTable.json" ;
+import  _productConfig             from "../../config/productTable.json" ;
 import { parseConfig2Sequelize }   from "./util" ;
 //
 const log           = require("debug")("nodejs-mysql-graphql:modelProducts") ;
