@@ -3,12 +3,12 @@
     "files": true
   },
   "compilerOptions": {
-      "target": "es2018",
+      "target": "es2021",
       "module": "commonjs",
       "jsx": "preserve",
       "strict": true,
       "esModuleInterop": true,
-      "lib": ["es2018", "esnext.asynciterable"],
+      "lib": ["es2021"],
       "resolveJsonModule": true
   },
   "exclude": ["node_modules"]

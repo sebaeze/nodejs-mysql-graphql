@@ -8,7 +8,6 @@ import { typeCustomer }           from "./customer.types" ;
 import { inputUpdateCustomer }    from "./customer.types" ;
 //
 const log = require("debug")("nodejs-mysql-graphql:schemaCustomerIndex")
-log("*** vamor a ver si anda el debug") ;
 //
 const queryCustomers = () => {
     try {
@@ -25,7 +24,7 @@ const queryCustomers = () => {
                 type:     new GraphQLList(typeCustomer) ,
                 resolve:  resolvers.Query.getCustomers
             }
-        }
+        } ;
     } catch(errQC){
         console.log("...errQC: ",errQC,";") ;
         throw errQC ;
@@ -50,6 +49,8 @@ const mutationCustomers = () => {
         throw errQC ;
     } ;
 } ;
+//
+log("...queryCustomers: ",queryCustomers(),";") ;
 //
 export const schema = new GraphQLSchema({
     query:    new GraphQLObjectType({ name: "Query"    , fields: queryCustomers }) ,

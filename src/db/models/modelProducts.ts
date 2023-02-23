@@ -2,7 +2,7 @@
 *
 */
 //
-import { Sequelize, DataTypes }    from 'sequelize';
+import { Sequelize }               from 'sequelize';
 import  _productConfig             from "../../config/productTable.json" ;
 import { parseConfig2Sequelize }   from "./util" ;
 //

@@ -1,43 +1,31 @@
 /*
 *
 */
-import {
-    GraphQLInt,
-    GraphQLFloat ,
-    GraphQLList,
-    GraphQLObjectType,
-    GraphQLSchema,
-    GraphQLString,
-    GraphQLInputObjectType,
-  } from 'graphql' ;
+import { GraphQLObjectType } from "graphql";
+import { GraphQLList, GraphQLNonNull, GraphQLSchema, GraphQLString }    from "graphql" ;
+import { type  }            from "./type"  ;
 //
-export const typeCustomer = new GraphQLObjectType({
-    name: "Customer" ,
-    fields: () => ({
-        customerNumber:    { type: GraphQLInt } ,
-        customerName:      { type: GraphQLString },
-        contactLastName:   { type: GraphQLString },
-        contactFirstName:  { type: GraphQLString },
-        phone:             { type: GraphQLString },
-        addressLine1:      { type: GraphQLString },
-        addressLine2:      { type: GraphQLString },
-        city:              { type: GraphQLString },
-        state:             { type: GraphQLString },
-        postalCode:        { type: GraphQLString },
-        country:           { type: GraphQLString },
-        salesRepEmployeeNumber: { type: GraphQLInt },
-        creditLimit:            { type: GraphQLFloat }
-    })
-}) ;
+const log = require("debug")("nodejs-mysql-graphql:schemaProductsIndex")
 //
-export const inputUpdateCustomer = new GraphQLInputObjectType({
-    name: "inputUpdateCustomer" ,
-    fields: {
-        customerNumber:    { type: GraphQLInt } ,
-        customerName:      { type: GraphQLString },
-        contactLastName:   { type: GraphQLString },
-        contactFirstName:  { type: GraphQLString },
-        creditLimit:       { type: GraphQLFloat }
-    }
+log("..typeprod:: ",type,"***") ;
+const fieldsQueryProducts = () => {
+    try {
+        return {
+            queryProduct: {
+                type:   new GraphQLList(type) ,
+                args:   { productCode: {type: new GraphQLNonNull(GraphQLString)} },
+                resolve(root?:any,args?:any){
+                    console.log("....queryProduct:: args: ",args,"***") ;
+                    return [args] ;
+                }
+            }
+        } ;
+    } catch(errQP){
+        throw errQP  ;
+    } ;
+} ;
+//
+export const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({ name: "Query" , fields: fieldsQueryProducts })
 }) ;
 //
