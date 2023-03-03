@@ -21,8 +21,8 @@ app.use( cors() );
 app.use(
     "/graphql",
     graphqlHTTP({
-        //schema:   schemaCustomer,
-        schema:   schemaProduct ,
+        schema:   schemaCustomer,
+        // schema:   schemaProduct ,
         graphiql: true,
     })
 ) ;

@@ -2,12 +2,14 @@
 *
 */
 import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLInt } from "graphql";
-import { resolvers    }           from "./customer.resolvers" ;
-import { updateCustomer }         from "./customer.resolvers";
-import { typeCustomer }           from "./customer.types" ;
-import { inputUpdateCustomer }    from "./customer.types" ;
+import { type as typeCustomer }            from "./types" ;
+import { inputUpdateCustomer  }            from "./types" ;
+//
+import { asyncFetchData    }               from "../../db" ;
+import { updateCustomer    }               from "../../db" ;
 //
 const log = require("debug")("nodejs-mysql-graphql:schemaCustomerIndex")
+//
 //
 const queryCustomers = () => {
     try {
@@ -15,14 +17,14 @@ const queryCustomers = () => {
             getCustomer:  {
               type:       new GraphQLList(typeCustomer) ,
               args:       { customerNumber: {type: new GraphQLNonNull(GraphQLInt)} } ,
-              resolve(root?:any,args?:any){ 
-                    let newArg={customerNumber:args.customerNumber} ;
-                    return resolvers.Query.getCustomer(newArg);
+              resolve(root?:any,args?:any,arg2?:any,arg3?:any) { 
+                    log("....fieldNodes: ",arg3.fieldNodes[0].selectionSet.selections,"\n loc: ",arg3.fieldNodes[0].selectionSet.loc ,"**") ;
+                    return asyncFetchData(args) ;
                 }
             },
             getCustomers: {
                 type:     new GraphQLList(typeCustomer) ,
-                resolve:  resolvers.Query.getCustomers
+                resolve:  asyncFetchData
             }
         } ;
     } catch(errQC){

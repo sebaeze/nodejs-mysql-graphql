@@ -1,0 +1,15 @@
+{
+    "customerNumber":     "INTEGER" ,
+    "customerName":       "STRING" ,
+    "contactLastName":    "STRING" ,
+    "contactFirstName":   "STRING" ,
+    "phone":              "STRING" ,
+    "addressLine1":       "STRING" ,
+    "addressLine2":       "STRING" ,
+    "city":               "STRING" ,
+    "state":              "STRING" ,
+    "postalCode":         "STRING" ,
+    "country":            "STRING" ,
+    "salesRepEmployeeNumber":  "INTEGER" ,
+    "creditLimit":             "FLOAT" 
+  }

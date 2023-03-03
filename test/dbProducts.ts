@@ -5,16 +5,26 @@ import {  jest , describe, expect, it }      from "@jest/globals" ;
 import 'dotenv/config' ;
 import { mysqlModel }                  from "../src/db" ;
 //
-let dbModels = mysqlModel() ;
+let dbModels = mysqlModel()    ;
 //
-const fetchProductData = () => {
+const fetchProductData = (args?:{fields?:[string],condition?:{productCode:string}}) => {
     return new Promise((respOk,respRech)=>{
         //
-        console.log("fetchProductData::(A)") ;
+        let ARRAY_FIELDS = ["productCode", "productName", "productLine", "productScale", "productVendor"]  ;
+        let CONDITION    = {} ;
+        //
+        if ( args!=undefined ){
+             if ( args.fields!=undefined ){
+                ARRAY_FIELDS = args.fields ;
+             } ;
+             if ( args.condition!=undefined ){
+                CONDITION = {where:args.condition} ;
+             } ;
+        };
+        //
         dbModels.products.sync()
             .then(()=>{
-                console.log("fetchproductsData::...termine de conectar") ;
-                return dbModels.products.findAll({ attributes:["productCode", "productName", "productLine", "productScale", "productVendor"],where: {"productCode":"S10_2016"}}) ;
+                return dbModels.products.findAll({ attributes: ARRAY_FIELDS , ...CONDITION }) ;
             })
             .then((respAny:any)=>{
                 respOk(respAny) ;
@@ -27,12 +37,10 @@ const fetchProductData = () => {
     }) ;
 } ;
 //
-//fetchProductData().then( data => {console.log("...funciona: data: ",data,"***")} ) ;
-//
 describe("***test query products",()=>{
     it("test:productCode:S10_2016", ()=>{
         expect.assertions(1);
-        return fetchProductData().then( data => expect(data).toHaveLength(1) ) ;
+        return fetchProductData({condition:{productCode:"S10_4757"}}).then( data => expect(data).toHaveLength(1) ) ;
     }) ;
 }) ;
 //
