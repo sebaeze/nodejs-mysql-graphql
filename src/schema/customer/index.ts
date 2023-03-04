@@ -11,7 +11,7 @@ import { updateCustomer    }               from "../../db" ;
 const log = require("debug")("nodejs-mysql-graphql:schemaCustomerIndex")
 //
 //
-const queryCustomers = () => {
+export const queryCustomers = () => {
     try {
         return {
             getCustomer:  {
@@ -33,7 +33,7 @@ const queryCustomers = () => {
     } ;
 } ;
 //
-const mutationCustomers = () => {
+export const mutationCustomers = () => {
     try {
         return {
             updateCustomer:  {
@@ -52,10 +52,11 @@ const mutationCustomers = () => {
     } ;
 } ;
 //
+/*
 log("...queryCustomers: ",queryCustomers(),";") ;
 //
 export const schema = new GraphQLSchema({
     query:    new GraphQLObjectType({ name: "Query"    , fields: queryCustomers }) ,
     mutation: new GraphQLObjectType({ name: "Mutation" , fields: mutationCustomers })
 }) ;
-//
+*/

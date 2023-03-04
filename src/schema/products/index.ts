@@ -8,7 +8,7 @@ import { type  }            from "./type"  ;
 const log = require("debug")("nodejs-mysql-graphql:schemaProductsIndex")
 //
 log("..typeprod:: ",type,"***") ;
-const fieldsQueryProducts = () => {
+export const queryProducts = () => {
     try {
         return {
             queryProduct: {
@@ -24,8 +24,8 @@ const fieldsQueryProducts = () => {
         throw errQP  ;
     } ;
 } ;
-//
+/*
 export const schema = new GraphQLSchema({
-    query: new GraphQLObjectType({ name: "Query" , fields: fieldsQueryProducts })
+    query: new GraphQLObjectType({ name: "Query" , fields: queryProducts })
 }) ;
-//
+*/
